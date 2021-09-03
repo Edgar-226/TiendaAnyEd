@@ -3,11 +3,14 @@ const rateLimit = require('express-rate-limit');
 
 const corsOption = {
     origin : function (origin, callback) {
+        callback(null, true)
+        /*
         if (process.env.listaBlanca.indexOf(origin) !== -1){
             callback(null, true)
         }else {
             callback(new Error('No autorizado por Cors'))
         }
+        */
 
     }
 }
@@ -17,13 +20,12 @@ const corsOption = {
 
 log = function (req,res,next) {
     const {method,path,query,body} = req;
-    console.log(`${method} - ${path} - ${JSON.stringify(query)} - ${JSON.stringify(body)}`);
+    //console.log(`${method} - ${path} - ${JSON.stringify(query)} - ${JSON.stringify(body)}`);
     next()
 }
 
 Autenticar = function (req,res,next) {
     const {nombre,codigo,clave} = req.body;
-    console.log(clave)
     if(clave == "Una clave para protegernos a todos"){
         return next()
     }

@@ -18,12 +18,30 @@ for (let i = 0; i < 50; i++) {
     products.appendChild(contenedor)
 }
 
-async function getPaises() {
-    const result = await fetch('http://localhost:3000/paises');
-    const paises = await result.json();
-    console.log(paises.MX);  
+async function getCart() {
+    const result = await fetch('http://localhost:3000/cart');
+    const cart = await result.json();
+    console.log(cart);  
 }
-getPaises()
+getCart()
+
+
+async function agregarProducto() {
+ 
+}
+async function eliminarProducto(id) {
+    await fetch('http://localhost:3000/cart/'+ id);
+    const cart = getCart();
+    return cart
+}
+
+
+
+
+getCart()
+
+
+
 getPaises()
 getPaises()
 getPaises()

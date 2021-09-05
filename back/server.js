@@ -25,11 +25,11 @@ app.get('/cart',cors(midd.corsOption),function (req, res) {
 
 
 app.post('/cart',midd.Autenticar, function (req, res) {
-    if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio) {
+    if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio || !req.body.foto) {
         db.respuesta = {
             codigo: 502,
             error: true,
-            mensaje: 'Es indispensable enviar nombre y código del país'
+            mensaje: 'Es indispensable agregar todos los datos'
         }
     } else {
         if (db.buscaProducto(req.body.id)) {
@@ -40,7 +40,7 @@ app.post('/cart',midd.Autenticar, function (req, res) {
                 
             }
         } else {
-            db.nuevoProducto(req.body.id, req.body.nombre,req.body.cantidad,req.body.precio)
+            db.nuevoProducto(req.body.id, req.body.nombre,req.body.cantidad,req.body.precio, req.body.foto)
             db.respuesta = {
                 codigo: 200,
                 error: false,
